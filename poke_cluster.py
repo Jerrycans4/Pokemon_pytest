@@ -17,7 +17,6 @@ if __name__ == '__main__':
     # print(poke_labels)
     df['cluster'] = poke_labels
     cluster_means = df.groupby('cluster')[['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed']].mean(numeric_only=True)
-    used_stats = []
     for i, cluster_id in enumerate(cluster_means.index):
         print(f"Cluster {i}")
         row = cluster_means.loc[cluster_id]
@@ -37,8 +36,6 @@ if __name__ == '__main__':
             cluster_name = "Special Wall"
         else:
             cluster_name = "Balanced"
-
-        used_stats.append(max_stat)
 
         cluster_pokemon = df[df['cluster'] == i][['name', 'id', 'hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed']]
         print(cluster_name)
